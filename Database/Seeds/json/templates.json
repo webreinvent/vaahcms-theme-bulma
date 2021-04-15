@@ -1,0 +1,94 @@
+[
+    {
+        "template": {
+            "name": "Default",
+            "type": "page",
+            "file_path": "frontend.default"
+        },
+        "groups": [
+        ]
+    },
+    {
+        "template": {
+            "name": "Home",
+            "type": "page",
+            "file_path": "frontend.home"
+        },
+        "groups": [
+        ]
+
+    },
+    {
+        "template": {
+            "name": "About Us",
+            "type": "page",
+            "file_path": "frontend.pages.about-us"
+        },
+        "groups": [
+            {
+                "name": "Header",
+                "slug": "header",
+                "fields": [
+                    {
+                        "name": "Headline",
+                        "slug": "headline",
+                        "meta": {
+                            "default": "About Us"
+                        },
+                        "type": {
+                            "slug": "text"
+                        }
+                    },
+                    {
+                        "name": "Sub Headline",
+                        "slug": "sub-headline",
+                        "meta": {
+                        },
+                        "type": {
+                            "slug": "textarea"
+                        }
+                    },
+                    {
+                        "name": "Content",
+                        "slug": "content",
+                        "meta": {
+                        },
+                        "type": {
+                            "slug": "editor"
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "template": {
+            "name": "Contact Us",
+            "type": "page",
+            "file_path": "frontend.pages.contact-us"
+        },
+        "groups": [
+        ]
+
+    },
+    {
+        "template": {
+            "name": "Home",
+            "type": "page",
+            "file_path": "frontend.home"
+        },
+        "groups": [
+        ]
+
+    },
+    {
+        "template": {
+            "name": "Single Blog",
+            "type": "page",
+            "file_path": "frontend.single-blog"
+        },
+        "groups": [
+        ]
+
+    }
+]

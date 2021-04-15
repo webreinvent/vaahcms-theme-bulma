@@ -3,6 +3,7 @@ namespace VaahCms\Themes\BulmaBlogTheme\Database\Seeds;
 
 
 use Illuminate\Database\Seeder;
+use VaahCms\Modules\Cms\Libraries\CmsSeeder;
 
 class DatabaseTableSeeder extends Seeder
 {
@@ -13,7 +14,17 @@ class DatabaseTableSeeder extends Seeder
      */
     public function run()
     {
-        $this->seeds();
+        $theme_slug = 'bulmablogtheme';
+
+
+        $file = __DIR__.'/json/theme_locations.json';
+        CmsSeeder::themeLocations($theme_slug, $file);
+
+        $file = __DIR__.'/json/templates.json';
+        CmsSeeder::templates($theme_slug, $file);
+
+        $file = __DIR__.'/json/content_types.json';
+        CmsSeeder::contentTypes($file);
     }
 
     /**
@@ -21,10 +32,6 @@ class DatabaseTableSeeder extends Seeder
      *
      * @return void
      */
-    function seeds()
-    {
-
-    }
 
 
 }

@@ -1,0 +1,20 @@
+[
+    {
+        "name": "Home",
+        "slug": "home",
+        "permalink": "home",
+        "template_slug": "home"
+    },
+    {
+        "name": "About Us",
+        "slug": "about-us",
+        "permalink": "about-us",
+        "template_slug": "about-us"
+    },
+    {
+        "name": "Contact Us",
+        "slug": "contact-us",
+        "permalink": "contact-us",
+        "template_slug": "contact-us"
+    }
+]

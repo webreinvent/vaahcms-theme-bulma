@@ -1,0 +1,12 @@
+[
+    {
+        "name": "Blog 1",
+        "template_slug": "single-blog",
+        "permalink": "blog-1"
+    },
+    {
+        "name": "Blog 2",
+        "template_slug": "single-blog",
+        "permalink": "blog-2"
+    }
+]

@@ -3,6 +3,7 @@ namespace VaahCms\Themes\BulmaBlogTheme\Database\Seeds;
 
 
 use Illuminate\Database\Seeder;
+use VaahCms\Modules\Cms\Libraries\CmsSeeder;
 
 class SampleDataTableSeeder extends Seeder
 {
@@ -13,7 +14,13 @@ class SampleDataTableSeeder extends Seeder
      */
     public function run()
     {
-        $this->seeds();
+        $theme_slug = 'bulmablogtheme';
+
+        $file = __DIR__.'/json/sample/pages.json';
+        CmsSeeder::createSampleField($theme_slug, $file);
+
+        $file = __DIR__.'/json/sample/blogs.json';
+        CmsSeeder::createSampleField($theme_slug, $file, 'blog');
     }
 
     /**
@@ -21,10 +28,6 @@ class SampleDataTableSeeder extends Seeder
      *
      * @return void
      */
-    function seeds()
-    {
-
-    }
 
 
 }
