@@ -1,0 +1,27 @@
+{
+    "name": "vaahcms/bulmablogtheme",
+    "description": "Bulma 0.9.2 Blog",
+    "authors": [
+        {
+            "name": "bulmablogtheme",
+            "email": "support@vaah.dev"
+        }
+    ],
+    "require": {
+        "php": "^7.0"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "VaahCms\\Themes\\BulmaBlogTheme\\Providers\\BulmaBlogThemeServiceProvider"
+            ],
+            "aliases": {
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "VaahCms\\Themes\\BulmaBlogTheme\\": ""
+        }
+    }
+}
