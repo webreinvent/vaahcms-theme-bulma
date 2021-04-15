@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
+    @if(isset($data) && (is_array($data) || is_object($data)) && is_subclass_of($data, 'Illuminate\Database\Eloquent\Model'))
+        {!! get_field($data, 'seo-meta-tags') !!}
+    @else
         <title>BlogTheme</title>
+    @endif
     <meta name="csrf-token" id="_token" content="{{ csrf_token() }}">
 
     <base href="{{\URL::to('/')}}">
