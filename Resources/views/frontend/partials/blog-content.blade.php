@@ -1,7 +1,7 @@
 <div class="container">
     <div class="section">
         <div class="columns">
-            <div class="column">
+            <div class="column is-three-quarters">
                 <div class="section">
                     <p class="is-size-2 has-text-weight-bold">{!! get_field($data, 'title') !!}</p>
                     @if($data->authorUser)
@@ -41,6 +41,9 @@
                     </div>
 
                 </div>
+            </div>
+            <div class="column">
+                @include('bulmablogtheme::frontend.partials.side-bar-filter')
             </div>
         </div>
 
