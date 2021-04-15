@@ -16,12 +16,15 @@ class SampleDataTableSeeder extends Seeder
     {
         $theme_slug = 'bulmablogtheme';
 
+
+        $file = __DIR__.'/json/sample/content_types.json';
+        CmsSeeder::contentTypes($file);
+
         $file = __DIR__.'/json/sample/pages.json';
         CmsSeeder::createSampleField($theme_slug, $file);
 
         $file = __DIR__.'/json/sample/blogs.json';
         CmsSeeder::createSampleField($theme_slug, $file, 'blog');
-
 
         $file = __DIR__.'/json/sample/menus.json';
         CmsSeeder::menus($theme_slug, $file);
