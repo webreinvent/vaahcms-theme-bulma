@@ -62,67 +62,123 @@
 
                                 @endphp
 
-                                <div class="column is-6" style="display: grid;">
-                                    <div class="card box">
+                            @if(count($blogs) === 1)
+                                    <div class="card column is-two-thirds is-offset-one-fifth">
 
-                                        <a href="{{url('/blog/'.$blog_data->permalink)}}">
-                                            <div class="card-image">
-                                                <figure class="image is-4by3">
-                                                    @if(get_field($blog_data, 'thumbnail-image'))
-                                                        <img src='{{get_field($blog_data, 'thumbnail-image')}}'/>
-                                                    @else
-                                                        <img src="http://bulma.io/images/placeholders/1280x960.png" alt="Image">
+                                            <a href="{{url('/blog/'.$blog_data->permalink)}}">
+
+                                                <div class="card-content">
+
+                                                    @if($blog_data->authorUser)
+                                                        <div class="media">
+                                                            <div class="media-left">
+                                                                <figure class="image is-48x48">
+                                                                    @if($image)
+                                                                        <img src='{{$image}}' alt="author_image"/>
+                                                                    @else
+                                                                        <img src="http://bulma.io/images/placeholders/96x96.png" alt="Image">
+                                                                    @endif
+
+                                                                </figure>
+                                                            </div>
+                                                            <div class="media-content">
+                                                                <p>
+                                                                    <strong>{{$name ? $name : '' }}</strong>
+                                                                    <br>
+                                                                    <small>{{ $title ? $title : '' }}</small>
+                                                                </p>
+                                                            </div>
+                                                        </div>
                                                     @endif
-                                                </figure>
-                                            </div>
+                                                </div>
 
-                                            <div class="card-content">
-
-                                                @if($blog_data->authorUser)
-                                                    <div class="media">
-                                                        <div class="media-left">
-                                                            <figure class="image is-48x48">
-                                                                @if($image)
-                                                                    <img src='{{$image}}' alt="author_image"/>
-                                                                @else
-                                                                    <img src="http://bulma.io/images/placeholders/96x96.png" alt="Image">
-                                                                @endif
-
-                                                            </figure>
-                                                        </div>
-                                                        <div class="media-content">
-                                                            <p>
-                                                                <strong>{{$name ? $name : '' }}</strong>
-                                                                <br>
-                                                                <small>{{ $title ? $title : '' }}</small>
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                @endif
-                                            </div>
-
-                                        </a>
+                                            </a>
 
 
-                                                <div class="content">
+                                            <div class="content">
+                                                <a href="{{url('/blog/'.$blog_data->permalink)}}">
                                                     <h4>{!! get_field($blog_data, 'title') !!}</h4>
-                                                    <span>{!! substr(strip_tags(get_field($blog_data, 'content')), 0, 250); !!}....</span>
-                                                    <br/>
-                                                    <br/>
-                                                    <div class="level">
+                                                    <h6>{!! substr(strip_tags(get_field($blog_data, 'content')), 0, 250); !!}....</h6>
+                                                </a>
+                                                <br/>
+                                                <br/>
+                                                <div class="level">
 
                                                         <span class="level-left has-text-weight-bold">
                                                             <a href="{{url('/home/?category='.get_field($blog_data, 'category'))}}">
                                                                 {!! get_field($blog_data, 'category') !!}
                                                             </a>
                                                         </span>
-                                                        <br/>
-                                                        <small class="level-right">{{date('d M Y - h:i A', strtotime($blog_data->created_at))}}</small>
-                                                    </div>
+                                                    <br/>
+                                                    <small class="level-right">{{date('d M Y - h:i A', strtotime($blog_data->created_at))}}</small>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                            @else
+                                    <div class="column is-6" style="display: grid;">
+                                        <div class="card box">
+
+                                            <a href="{{url('/blog/'.$blog_data->permalink)}}">
+                                                <div class="card-image">
+                                                    <figure class="image is-4by3">
+                                                        @if(get_field($blog_data, 'thumbnail-image'))
+                                                            <img src='{{get_field($blog_data, 'thumbnail-image')}}'/>
+                                                        @else
+                                                            <img src="http://bulma.io/images/placeholders/1280x960.png" alt="Image">
+                                                        @endif
+                                                    </figure>
                                                 </div>
 
+                                                <div class="card-content">
+
+                                                    @if($blog_data->authorUser)
+                                                        <div class="media">
+                                                            <div class="media-left">
+                                                                <figure class="image is-48x48">
+                                                                    @if($image)
+                                                                        <img src='{{$image}}' alt="author_image"/>
+                                                                    @else
+                                                                        <img src="http://bulma.io/images/placeholders/96x96.png" alt="Image">
+                                                                    @endif
+
+                                                                </figure>
+                                                            </div>
+                                                            <div class="media-content">
+                                                                <p>
+                                                                    <strong>{{$name ? $name : '' }}</strong>
+                                                                    <br>
+                                                                    <small>{{ $title ? $title : '' }}</small>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    @endif
+                                                </div>
+
+                                            </a>
+
+
+                                            <div class="content">
+                                                <h4>{!! get_field($blog_data, 'title') !!}</h4>
+                                                <span>{!! substr(strip_tags(get_field($blog_data, 'content')), 0, 250); !!}....</span>
+                                                <br/>
+                                                <br/>
+                                                <div class="level">
+
+                                                        <span class="level-left has-text-weight-bold">
+                                                            <a href="{{url('/home/?category='.get_field($blog_data, 'category'))}}">
+                                                                {!! get_field($blog_data, 'category') !!}
+                                                            </a>
+                                                        </span>
+                                                    <br/>
+                                                    <small class="level-right">{{date('d M Y - h:i A', strtotime($blog_data->created_at))}}</small>
+                                                </div>
+                                            </div>
+
+                                        </div>
                                     </div>
-                                </div>
+                            @endif
+
                             @endforeach
                         @else
                             <img style="width: -webkit-fill-available"

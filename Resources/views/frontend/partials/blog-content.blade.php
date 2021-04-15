@@ -3,7 +3,7 @@
         <div class="columns">
             <div class="column">
                 <div class="section">
-                    <h2>{!! get_field($data, 'title') !!}</h2>
+                    <p class="is-size-2 has-text-weight-bold">{!! get_field($data, 'title') !!}</p>
                     @if($data->authorUser)
                         <div class="media">
                             <div class="media-left">

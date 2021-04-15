@@ -25,6 +25,9 @@ class DatabaseTableSeeder extends Seeder
 
         $file = __DIR__.'/json/content_types.json';
         CmsSeeder::contentTypes($file);
+
+        $file = __DIR__.'/json/blogs.json';
+        CmsSeeder::createSampleField($theme_slug, $file,'blog');
     }
 
     /**

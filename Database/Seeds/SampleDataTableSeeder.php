@@ -21,6 +21,10 @@ class SampleDataTableSeeder extends Seeder
 
         $file = __DIR__.'/json/sample/blogs.json';
         CmsSeeder::createSampleField($theme_slug, $file, 'blog');
+
+
+        $file = __DIR__.'/json/sample/menus.json';
+        CmsSeeder::menus($theme_slug, $file);
     }
 
     /**

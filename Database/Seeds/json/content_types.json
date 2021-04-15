@@ -23,7 +23,7 @@
                     {
                         "name": "Title",
                         "meta": {
-                            "default": "Self-regulation & Attention Management: Why is it so difficult and how we can improve it?"
+                            "default": "Hello World"
                         },
                         "type": {
                             "slug": "title"
@@ -32,7 +32,7 @@
                     {
                         "name": "Slug",
                         "meta": {
-                            "default": "self-regulation-attention-management-why-is-it-so-difficult-and-how-we-can-improve-it?"
+                            "default": "slug"
                         },
                         "type": {
                             "slug": "slug"
@@ -50,7 +50,7 @@
                     {
                         "name": "Content",
                         "meta": {
-                            "default": "We discussed in our previous article what self-control is and why it is critical in high performance and higher well being. We also left you with an interesting dilemma about having limited resources for self-control. On one hand, we have limited capacity for self-control and it is not easy and productive to be in this mindset all the time. On the other hand, being able to have high self-control for reinventing ourselves and creating mental stability are critical skills to develop to “survive and thrive” in the future workforce!"
+                            "default": "Welcome. This is your first post. Edit or delete it, then start writing!"
                         },
                         "type": {
                             "slug": "editor"
@@ -59,7 +59,7 @@
                     {
                         "name": "Category",
                         "meta": {
-                            "default": "Sport",
+                            "default": "Default",
                             "is_multiple": false,
                             "option": [
                                 "Default",
