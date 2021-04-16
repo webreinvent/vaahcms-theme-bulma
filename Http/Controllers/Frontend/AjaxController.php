@@ -90,7 +90,7 @@ class AjaxController extends Controller
         );
         $messages = array(
             'subject.required' => 'Select a subject.',
-            'is_agree.required' => 'Checked a Term & Condition'
+            'is_agree.required' => 'Please check terms and conditions.'
         );
 
         $validator = \Validator::make( $request->all(), $rules, $messages);

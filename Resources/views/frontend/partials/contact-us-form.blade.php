@@ -19,11 +19,7 @@
             </article>
         @endif
 
-        <div class="columns">
-
-            <div class="column">
                 <form method="post" action="{{url('/ajax/store-form')}}">
-                    <div class="section">
                     <p class="is-size-2 has-text-weight-bold">{!! get_field($data, 'headline', 'header', 'template') !!}</p>
 
                     <br/>
@@ -67,7 +63,7 @@
                         <div class="control">
                             <label class="checkbox">
                                 <input name="is_agree" value='true' type="checkbox">
-                                I agree to the <a href="#">terms and conditions</a>
+                                I agree to the <a href="{{url('/terms-and-conditions')}}">terms and conditions</a>
                             </label>
                         </div>
                     </div>
@@ -83,10 +79,7 @@
                     </div>
                     <br/>
 
-                </div>
                 </form>
-            </div>
-        </div>
 
     </div>
 </div>
