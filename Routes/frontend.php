@@ -44,19 +44,6 @@ Route::group(
 
 Route::group(
     [
-        'prefix' => '/',
-        'middleware' => ['web'],
-        'namespace' => 'Frontend',
-    ],
-    function () {
-        //------------------------------------------------
-        Route::get('/', 'FrontendController@index')
-            ->name('vh.frontend.bulmablogtheme');
-        //------------------------------------------------
-    });
-
-Route::group(
-    [
         'prefix' => '/ajax/',
         'middleware' => ['web'],
         'namespace' => 'Frontend',
@@ -65,5 +52,8 @@ Route::group(
         //------------------------------------------------
         Route::post('/getBlogList', 'AjaxController@getBLogList')
             ->name('vh.frontend.ajax.getBlogList');
+        //------------------------------------------------
+        Route::post('/store-form', 'AjaxController@storeForm')
+            ->name('vh.frontend.bulmablogtheme.ajax.store-form');
         //------------------------------------------------
     });

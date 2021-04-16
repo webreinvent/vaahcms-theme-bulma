@@ -15,7 +15,7 @@
 @section('content')
     <div>
         @include('bulmablogtheme::frontend.partials.header')
-        @include('bulmablogtheme::frontend.partials.contact-us-content')
+        @include('bulmablogtheme::frontend.partials.contact-us-form')
         @include('bulmablogtheme::frontend.partials.footer')
     </div>
 

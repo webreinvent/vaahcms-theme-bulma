@@ -1,5 +1,5 @@
 <section class="p-0 navbar-menu-section has-background-white">
-    <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
+    <nav class="navbar" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
             <a class="navbar-item" href="{{url('/')}}">
                 <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">

@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use VaahCms\Modules\Cms\Entities\Content;
+use VaahCms\Themes\BulmaBlogTheme\Mail\ContactFormMail;
 
 class AjaxController extends Controller
 {
@@ -74,6 +75,30 @@ class AjaxController extends Controller
         return $query->orderBy('vh_cms_contents.created_at', 'desc')
             ->select('vh_cms_contents.id', 'vh_cms_contents.created_at')
             ->distinct()->get();
+
+    }
+
+    public function storeForm(Request $request)
+    {
+
+        $rules = array(
+            'name' => 'required',
+            'email' => 'required|email',
+            'subject' => 'required',
+            'message' => 'required',
+            'is_agree' => 'required'
+        );
+
+        $validator = \Validator::make( $request->all(), $rules);
+        if ( $validator->fails() ) {
+
+            $errors             = errorsToArray($validator->errors());
+            $response['status'] = 'failed';
+            $response['errors'] = $errors[0];
+            return response()->json($response);
+        }
+
+        \Mail::to(env('MAIL_FROM_ADDRESS'))->send(new ContactFormMail($request));
 
     }
 
