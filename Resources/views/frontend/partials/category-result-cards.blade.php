@@ -1,19 +1,19 @@
 
-
-
-
-
 <div class="container">
     <div class="section">
-        <div class="card box">
-            @if(isset($category_slug) && $category_slug)
-                <p class="is-size-4 has-text-weight-bold">Category: "{{$category_slug}}"</p>
-            @endif
-        </div>
+
         <div class="columns">
 
             <div class="column is-three-quarters mt-6">
+
+                <div class="mb-5">
+                    @if(isset($category_slug) && $category_slug)
+                        <p class="is-size-4 has-text-weight-bold">Category: "{{$category_slug}}"</p>
+                    @endif
+                </div>
+
                     <div class="columns is-multiline">
+
                         @if(isset($data) && (is_array($data) || is_object($data)) && count($data) > 0)
                             @foreach($data as $blog)
 

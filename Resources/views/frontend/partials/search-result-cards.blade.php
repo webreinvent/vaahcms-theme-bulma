@@ -5,12 +5,12 @@
 
 <div class="container">
     <div class="section">
-        <div class="card box">
-            <p class="is-size-4 has-text-weight-bold">Search Result for: "{{app('request')->input('q')}}"</p>
-        </div>
         <div class="columns">
 
             <div class="column is-three-quarters mt-6">
+                <div class="mb-5">
+                    <p class="is-size-4 has-text-weight-bold">Search Result for: "{{app('request')->input('q')}}"</p>
+               </div>
                     <div class="columns is-multiline">
                         @if(isset($data) && (is_array($data)
                         || is_object($data)) && count($data) > 0)
