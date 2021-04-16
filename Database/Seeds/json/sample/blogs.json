@@ -12,31 +12,31 @@
     {
         "name": "Lorem Ipsum 3",
         "template_slug": "single-blog",
-        "permalink": "blog-2"
+        "permalink": "blog-3"
     },
     {
         "name": "Lorem Ipsum 4",
         "template_slug": "single-blog",
-        "permalink": "blog-2"
+        "permalink": "blog-4"
     },
     {
         "name": "Lorem Ipsum 5",
         "template_slug": "single-blog",
-        "permalink": "blog-2"
+        "permalink": "blog-5"
     },
     {
         "name": "Lorem Ipsum 6",
         "template_slug": "single-blog",
-        "permalink": "blog-2"
+        "permalink": "blog-6"
     },
     {
         "name": "Lorem Ipsum 7",
         "template_slug": "single-blog",
-        "permalink": "blog-2"
+        "permalink": "blog-7"
     },
     {
         "name": "Lorem Ipsum 8",
         "template_slug": "single-blog",
-        "permalink": "blog-2"
+        "permalink": "blog-8"
     }
 ]

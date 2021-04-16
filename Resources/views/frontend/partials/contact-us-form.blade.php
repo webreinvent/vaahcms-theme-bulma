@@ -27,14 +27,14 @@
                     <div class="field">
                         <label class="label">Name</label>
                         <div class="control">
-                            <input class="input" value="{{ old('name') }}" name="name" type="text" placeholder="Text input">
+                            <input class="input" value="{{ old('name') }}" name="name" type="text" placeholder="Name">
                         </div>
                     </div>
 
                     <div class="field">
                         <label class="label">Email</label>
                         <div class="control">
-                            <input class="input" value="{{ old('email') }}" name="email" type="email" placeholder="Email input">
+                            <input class="input" value="{{ old('email') }}" name="email" type="email" placeholder="xxx@example.com">
                         </div>
                     </div>
 
@@ -55,7 +55,7 @@
                     <div class="field">
                         <label class="label">Message</label>
                         <div class="control">
-                            <textarea name="message" class="textarea" placeholder="Textarea">{{ old('message') }}</textarea>
+                            <textarea name="message" class="textarea" placeholder="Message">{{ old('message') }}</textarea>
                         </div>
                     </div>
 
