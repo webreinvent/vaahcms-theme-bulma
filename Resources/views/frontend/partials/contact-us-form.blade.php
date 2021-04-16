@@ -1,5 +1,24 @@
 <div class="container">
     <div class="section">
+        @if (Session::get('failed') && count(Session::get('failed')) > 0)
+            <article class="message is-danger">
+                <div class="message-body">
+                    <ul>
+                        @foreach (Session::get('failed') as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            </article>
+        @endif
+        @if (Session::get('success'))
+            <article class="message is-info">
+                <div class="message-body">
+                    <strong>{{ Session::get('success') }}</strong>
+                </div>
+            </article>
+        @endif
+
         <div class="columns">
 
             <div class="column">
@@ -12,17 +31,14 @@
                     <div class="field">
                         <label class="label">Name</label>
                         <div class="control">
-                            <input class="input" name="name" type="text" placeholder="Text input">
+                            <input class="input" value="{{ old('name') }}" name="name" type="text" placeholder="Text input">
                         </div>
                     </div>
 
                     <div class="field">
                         <label class="label">Email</label>
                         <div class="control">
-                            <input class="input" name="email" type="email" placeholder="Email input">
-                            <span class="icon is-small is-right">
-      <i class="fas fa-exclamation-triangle"></i>
-    </span>
+                            <input class="input" value="{{ old('email') }}" name="email" type="email" placeholder="Email input">
                         </div>
                     </div>
 
@@ -30,11 +46,11 @@
                         <label class="label">Subject</label>
                         <div class="control">
                             <div class="select">
-                                <select name="subject">
-                                    <option value="">Select dropdown</option>
-                                    <option value="Sports">Sports</option>
-                                    <option value="Entertainments">Entertainments</option>
-                                    <option value="Education">Education</option>
+                                <select name="subject" >
+                                    <option value="" @if(old('subject') == "") selected @endif>Select subject</option>
+                                    <option value="Sports" @if(old('subject') == "Sports") selected @endif>Sports</option>
+                                    <option value="Entertainments" @if(old('subject') == "Entertainments") selected @endif>Entertainments</option>
+                                    <option value="Education" @if(old('subject') == "Education") selected @endif>Education</option>
                                 </select>
                             </div>
                         </div>
@@ -43,7 +59,7 @@
                     <div class="field">
                         <label class="label">Message</label>
                         <div class="control">
-                            <textarea name="message" class="textarea" placeholder="Textarea"></textarea>
+                            <textarea name="message" class="textarea" placeholder="Textarea">{{ old('message') }}</textarea>
                         </div>
                     </div>
 

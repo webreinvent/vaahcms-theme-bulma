@@ -88,17 +88,30 @@ class AjaxController extends Controller
             'message' => 'required',
             'is_agree' => 'required'
         );
+        $messages = array(
+            'subject.required' => 'Select a subject.',
+            'is_agree.required' => 'Checked a Term & Condition'
+        );
 
-        $validator = \Validator::make( $request->all(), $rules);
+        $validator = \Validator::make( $request->all(), $rules, $messages);
         if ( $validator->fails() ) {
 
             $errors             = errorsToArray($validator->errors());
-            $response['status'] = 'failed';
-            $response['errors'] = $errors[0];
-            return response()->json($response);
+
+            return back()->with('failed', $errors)->withInput();
         }
 
-        \Mail::to(env('MAIL_FROM_ADDRESS'))->send(new ContactFormMail($request));
+        try{
+            \Mail::to(env('MAIL_FROM_ADDRESS'))->send(new ContactFormMail($request));
+
+            return back()->with('success', 'Thanks for contacting us!');
+        }catch (\Exception $e){
+            $errors[]             = $e->getMessage();
+
+            return back()->with('failed', $errors)->withInput();
+        }
+
+
 
     }
 
