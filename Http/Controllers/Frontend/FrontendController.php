@@ -19,8 +19,10 @@ class FrontendController extends Controller
         return view('bulmablogtheme::frontend.home');
     }
 
-    public function searchResult(Request $request)
+    public function searchResult(Request $request,$slug)
     {
+
+        dd($slug);
 
         $query = Content::leftJoin('vh_cms_content_types', function ($join) {
             $join->on('vh_cms_content_types.id', 'vh_cms_contents.vh_cms_content_type_id');
@@ -37,10 +39,35 @@ class FrontendController extends Controller
 
         $data = $query->orderBy('vh_cms_contents.created_at', 'desc')
             ->select('vh_cms_contents.id', 'vh_cms_contents.created_at')
-            ->distinct()->get();
+            ->distinct()->simplePaginate(6);
 
 
         return view('bulmablogtheme::frontend.pages.search-result')->with('data', $data);
+    }
+
+    public function searchCategory(Request $request,$slug)
+    {
+
+        $query = Content::leftJoin('vh_cms_content_types', function ($join) {
+            $join->on('vh_cms_content_types.id', 'vh_cms_contents.vh_cms_content_type_id');
+        })->join('vh_cms_content_form_fields', function ($join) {
+            $join->on('vh_cms_content_form_fields.vh_cms_content_id', '=', 'vh_cms_contents.id');
+        })->join('vh_cms_form_fields', function ($join) {
+            $join->on('vh_cms_form_fields.id', '=', 'vh_cms_content_form_fields.vh_cms_form_field_id');
+        })->where('vh_cms_content_types.slug', 'blog')->where('vh_cms_contents.status', 'published');
+
+        if ($slug) {
+            $query->where('vh_cms_form_fields.slug', 'category')
+                ->where('vh_cms_content_form_fields.content', $slug);
+        }
+
+        $data = $query->orderBy('vh_cms_contents.created_at', 'desc')
+            ->select('vh_cms_contents.id', 'vh_cms_contents.created_at')
+            ->distinct()->simplePaginate(6);
+
+
+        return view('bulmablogtheme::frontend.pages.category-result')
+            ->with(['data'=> $data,'category_slug'=>$slug]);
     }
 
 }

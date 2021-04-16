@@ -20,21 +20,14 @@ Route::group(
     function () {
         //------------------------------------------------
         Route::get( '/', 'FrontendController@index' )
-        ->name( 'vh.frontend.bulmablogtheme' );
+            ->name( 'vh.frontend.bulmablogtheme' );
         //------------------------------------------------
-    });
-
-
-Route::group(
-    [
-        'prefix' => '/',
-        'middleware' => ['web'],
-        'namespace' => 'Frontend',
-    ],
-    function () {
+        Route::get('/category/{slug}', 'FrontendController@searchCategory')
+            ->name('vh.frontend.bulmablogtheme.category');
         //------------------------------------------------
-        Route::get('/search-result', 'FrontendController@searchResult')
-            ->name('vh.frontend.search-result');
+        Route::post('/search/{slug}', 'FrontendController@searchResult')
+            ->name('vh.frontend.bulmablogtheme.search');
+        //------------------------------------------------
         //------------------------------------------------
     });
 

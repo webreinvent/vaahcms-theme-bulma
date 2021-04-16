@@ -1,10 +1,15 @@
+@php
+    $value ="5345";
+@endphp
 <section>
     <div class="section box" style="margin-top: 3rem;">
-        <form method="get" action="{{url('/search-result')}}">
+        <form method="post" action="{{url('/search/asd')}}">
             <div class="field has-addons">
 
+                @csrf
+
                 <div class="control">
-                    <input class="input" value="{{app('request')->input('q')}}" name="q" type="text" placeholder="Find a blog">
+                    <input class="input" value="" name="q" type="text" placeholder="Find a blog">
                 </div>
                 <div class="control">
                     <button type="submit" class="button is-primary">
@@ -42,8 +47,8 @@
                     @foreach($category as $cat)
 
                         <li>
-                            <a href="{{url('/home/?category='.$cat->content)}}"
-                               class="{{$cat->content == app('request')->input('category') ? 'is-active':''}}"
+                            <a href="{{url('/category/'.$cat->content)}}"
+                               class="{{ isset($category_slug) && $cat->content == $category_slug ? 'is-active':''}}"
                                id="category-filter"
                                data-category="{{ $cat->content }}">
                                 {{ $cat->content }}
