@@ -3,24 +3,28 @@
         "name": "Home",
         "slug": "home",
         "permalink": "home",
-        "template_slug": "home"
+        "template_slug": "home",
+        "title": "Bulma 0.9.2 Blog Theme"
     },
     {
         "name": "About Us",
         "slug": "about-us",
         "permalink": "about-us",
-        "template_slug": "about-us"
+        "template_slug": "about-us",
+        "title": "About Us"
     },
     {
         "name": "Terms And Conditions",
         "slug": "terms-and-conditions",
         "permalink": "terms-and-conditions",
-        "template_slug": "terms-and-conditions"
+        "template_slug": "terms-and-conditions",
+        "title": "Terms And Conditions"
     },
     {
         "name": "Contact Us",
         "slug": "contact-us",
         "permalink": "contact-us",
-        "template_slug": "contact-us"
+        "template_slug": "contact-us",
+        "title": "Contact Us"
     }
 ]
