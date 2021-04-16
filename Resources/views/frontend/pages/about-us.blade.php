@@ -15,7 +15,6 @@
 @section('content')
     <div>
 
-        @include('bulmablogtheme::frontend.partials.header')
         @include('bulmablogtheme::frontend.partials.about-us-content')
         @include('bulmablogtheme::frontend.partials.footer')
     </div>

@@ -85,15 +85,10 @@ class AjaxController extends Controller
             'name' => 'required',
             'email' => 'required|email',
             'subject' => 'required',
-            'message' => 'required',
-            'is_agree' => 'required'
-        );
-        $messages = array(
-            'subject.required' => 'Select a subject.',
-            'is_agree.required' => 'Please check terms and conditions.'
+            'message' => 'required'
         );
 
-        $validator = \Validator::make( $request->all(), $rules, $messages);
+        $validator = \Validator::make( $request->all(), $rules);
         if ( $validator->fails() ) {
 
             $errors             = errorsToArray($validator->errors());

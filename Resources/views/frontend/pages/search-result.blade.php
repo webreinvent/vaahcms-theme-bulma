@@ -14,7 +14,6 @@
 
 @section('content')
     <div>
-        @include('bulmablogtheme::frontend.partials.header')
         @include('bulmablogtheme::frontend.partials.search-result-cards')
         @include('bulmablogtheme::frontend.partials.footer')
     </div>

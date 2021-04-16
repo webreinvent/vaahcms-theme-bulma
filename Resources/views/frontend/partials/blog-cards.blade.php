@@ -103,16 +103,17 @@
 
 
                                         <div class="content">
-                                            <h4>{!! get_field($blog_data, 'title') !!}</h4>
-                                            <span>{!! substr(strip_tags(get_field($blog_data, 'content')), 0, 250); !!}....</span>
-                                            <br/>
+                                            <a href="{{url('/blog/'.$blog_data->permalink)}}">
+                                                <h4>{!! get_field($blog_data, 'title') !!}</h4>
+                                                <p class="has-text-black">{!! substr(strip_tags(get_field($blog_data, 'content')), 0, 250); !!}....</p>
+                                            </a>
                                             <br/>
                                             <div class="level">
 
                                                     <span class="level-left has-text-weight-bold">
-                                                        <a href="{{url('/home/?category='.get_field($blog_data, 'category'))}}">
-                                                            {!! get_field($blog_data, 'category') !!}
-                                                        </a>
+                                                            <a href="{{url('/category/'.get_field($blog_data, 'category'))}}">
+                                                                {!! get_field($blog_data, 'category') !!}
+                                                            </a>
                                                     </span>
                                                 <br/>
                                                 <small class="level-right">{{date('d M Y - h:i A', strtotime($blog_data->created_at))}}</small>

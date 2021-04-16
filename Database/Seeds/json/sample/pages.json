@@ -14,13 +14,6 @@
         "title": "About Us"
     },
     {
-        "name": "Terms And Conditions",
-        "slug": "terms-and-conditions",
-        "permalink": "terms-and-conditions",
-        "template_slug": "terms-and-conditions",
-        "title": "Terms And Conditions"
-    },
-    {
         "name": "Contact Us",
         "slug": "contact-us",
         "permalink": "contact-us",

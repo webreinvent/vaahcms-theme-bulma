@@ -41,14 +41,7 @@
                     <div class="field">
                         <label class="label">Subject</label>
                         <div class="control">
-                            <div class="select">
-                                <select name="subject" >
-                                    <option value="" @if(old('subject') == "") selected @endif>Select subject</option>
-                                    <option value="Sports" @if(old('subject') == "Sports") selected @endif>Sports</option>
-                                    <option value="Entertainments" @if(old('subject') == "Entertainments") selected @endif>Entertainments</option>
-                                    <option value="Education" @if(old('subject') == "Education") selected @endif>Education</option>
-                                </select>
-                            </div>
+                            <input class="input" value="{{ old('subject') }}" name="subject" type="text" placeholder="Subject">
                         </div>
                     </div>
 
@@ -59,22 +52,10 @@
                         </div>
                     </div>
 
-                    <div class="field">
-                        <div class="control">
-                            <label class="checkbox">
-                                <input name="is_agree" value='true' type="checkbox">
-                                I agree to the <a href="{{url('/terms-and-conditions')}}">terms and conditions</a>
-                            </label>
-                        </div>
-                    </div>
-
 
                     <div class="field is-grouped">
                         <div class="control">
                             <button  class="button is-link">Submit</button>
-                        </div>
-                        <div class="control">
-                            <button class="button is-link is-light">Cancel</button>
                         </div>
                     </div>
                     <br/>

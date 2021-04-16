@@ -28,14 +28,17 @@
                     <br/>
                     @if(get_field($data, 'thumbnail-image'))
                         <img src='{{get_field($data, 'thumbnail-image')}}'/>
+                        <br/>
                     @endif
-                    <br/>
-                    <br/>
                     {!! get_field($data, 'content') !!}
                     <br/>
                     <br/>
                     <div class="level">
-                        <span class="level-left"><span style="font-weight: bold">Category:&nbsp;</span> {!! get_field($data, 'category') !!}</span>
+                        <span class="level-left"><span style="font-weight: bold">Category:&nbsp;</span>
+                            <a href="{{url('/category/'.get_field($data, 'category'))}}">
+                                {!! get_field($data, 'category') !!}
+                            </a>
+                        </span>
                         <br/>
                         <p class="level-right">{{date('d M Y - h:i A', strtotime($data->created_at))}}</p>
                     </div>
