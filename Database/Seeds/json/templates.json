@@ -146,7 +146,7 @@
         "template": {
             "name": "Single Blog",
             "type": "page",
-            "file_path": "frontend.single-blog"
+            "file_path": "frontend.pages.single-blog"
         },
         "groups": [
         ]

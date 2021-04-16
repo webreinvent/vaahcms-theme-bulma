@@ -1,4 +1,4 @@
-@extends("bulmablogtheme::frontend.layouts.default",["title" => "Search: ".app('request')->input('q')])
+@extends("bulmablogtheme::frontend.layouts.default",["title" => "Search Result for: ".app('request')->input('q')])
 
 @section('vaahcms_extend_frontend_head')
 

@@ -10,11 +10,10 @@
         </div>
         <div class="columns">
 
-            <div class="column is-three-quarters">
-                <div class="section">
-                    <input type="hidden" value="{{ csrf_token() }}" id="token">
+            <div class="column is-three-quarters mt-6">
                     <div class="columns is-multiline">
-                        @if(isset($data) && (is_array($data) || is_object($data)) && count($data) > 0)
+                        @if(isset($data) && (is_array($data)
+                        || is_object($data)) && count($data) > 0)
                             @foreach($data as $blog)
 
                                 @php
@@ -99,11 +98,14 @@
                                 </div>
                             @endforeach
                         @else
-                            <img style="width: -webkit-fill-available"
-                                 src='https://cdn.dribbble.com/users/683081/screenshots/2728654/exfuse_app_main_nocontent.png?compress=1&resize=400x300'/>
+                            <div class="column">
+                                <img style="width: -webkit-fill-available"
+                                     src='https://cdn.dribbble.com/users/683081/screenshots/2728654/exfuse_app_main_nocontent.png?compress=1&resize=400x300'/>
+                            </div>
+
+
                         @endif
                     </div>
-                </div>
                 <div class="has-text-centered">
                     {{$data}}
                 </div>
@@ -114,9 +116,6 @@
             </div>
 
         </div>
-
-
-
     </div>
 </div>
 

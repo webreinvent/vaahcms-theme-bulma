@@ -32,27 +32,30 @@
 
     @endphp
 
-    <div class="section box">
-        <aside class="menu">
-            <p class="menu-label">
-                Category
-            </p>
-            <ul class="menu-list">
-                @foreach($category as $cat)
+    @if(count($category) > 0)
+        <div class="section box">
+            <aside class="menu">
+                <p class="menu-label">
+                    Category
+                </p>
+                <ul class="menu-list">
+                    @foreach($category as $cat)
 
-                    <li>
-                        <a href="{{url('/category/'.$cat->content)}}"
-                           class="{{ isset($category_slug) && $cat->content == $category_slug ? 'is-active':''}}"
-                           id="category-filter"
-                           data-category="{{ $cat->content }}">
-                            {{ $cat->content }}
-                        </a>
-                    </li>
-                @endforeach
-            </ul>
-        </aside>
+                        <li>
+                            <a href="{{url('/category/'.$cat->content)}}"
+                               class="{{ isset($category_slug) && $cat->content == $category_slug ? 'is-active':''}}"
+                               id="category-filter"
+                               data-category="{{ $cat->content }}">
+                                {{ $cat->content }}
+                            </a>
+                        </li>
+                    @endforeach
+                </ul>
+            </aside>
 
-    </div>
+        </div>
+    @endif
+
 
 
 </section>
