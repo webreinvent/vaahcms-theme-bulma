@@ -6,7 +6,7 @@
 <div class="container">
     <div class="section">
         <div class="card box">
-            <p class="has-text-weight-bold">Search Result for: "{{app('request')->input('q')}}"</p>
+            <p class="is-size-4 has-text-weight-bold">Search Result for: "{{app('request')->input('q')}}"</p>
         </div>
         <div class="columns">
 
@@ -105,6 +105,7 @@
                     </div>
                 </div>
                 <div class="has-text-centered">
+                    {{$data}}
                 </div>
 
             </div>

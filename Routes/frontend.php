@@ -25,7 +25,7 @@ Route::group(
         Route::get('/category/{slug}', 'FrontendController@searchCategory')
             ->name('vh.frontend.bulmablogtheme.category');
         //------------------------------------------------
-        Route::post('/search/{slug}', 'FrontendController@searchResult')
+        Route::get('/search', 'FrontendController@searchResult')
             ->name('vh.frontend.bulmablogtheme.search');
         //------------------------------------------------
         //------------------------------------------------

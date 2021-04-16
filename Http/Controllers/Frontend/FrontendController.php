@@ -19,10 +19,8 @@ class FrontendController extends Controller
         return view('bulmablogtheme::frontend.home');
     }
 
-    public function searchResult(Request $request,$slug)
+    public function searchResult(Request $request)
     {
-
-        dd($slug);
 
         $query = Content::leftJoin('vh_cms_content_types', function ($join) {
             $join->on('vh_cms_content_types.id', 'vh_cms_contents.vh_cms_content_type_id');
@@ -42,7 +40,7 @@ class FrontendController extends Controller
             ->distinct()->simplePaginate(6);
 
 
-        return view('bulmablogtheme::frontend.pages.search-result')->with('data', $data);
+        return view('bulmablogtheme::frontend.pages.search-result')->with(['data'=> $data->appends(request()->query())]);
     }
 
     public function searchCategory(Request $request,$slug)

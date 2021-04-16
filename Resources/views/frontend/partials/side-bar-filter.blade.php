@@ -1,15 +1,10 @@
-@php
-    $value ="5345";
-@endphp
+
 <section>
     <div class="section box" style="margin-top: 3rem;">
-        <form method="post" action="{{url('/search/asd')}}">
+        <form method="get" action="{{url('/search')}}">
             <div class="field has-addons">
-
-                @csrf
-
                 <div class="control">
-                    <input class="input" value="" name="q" type="text" placeholder="Find a blog">
+                    <input class="input" value="{{app('request')->input('q')}}" name="q" type="text" placeholder="Find a blog">
                 </div>
                 <div class="control">
                     <button type="submit" class="button is-primary">
@@ -37,29 +32,27 @@
 
     @endphp
 
-    @if(count($category) > 1)
-        <div class="section box">
-            <aside class="menu">
-                <p class="menu-label">
-                    Category
-                </p>
-                <ul class="menu-list">
-                    @foreach($category as $cat)
+    <div class="section box">
+        <aside class="menu">
+            <p class="menu-label">
+                Category
+            </p>
+            <ul class="menu-list">
+                @foreach($category as $cat)
 
-                        <li>
-                            <a href="{{url('/category/'.$cat->content)}}"
-                               class="{{ isset($category_slug) && $cat->content == $category_slug ? 'is-active':''}}"
-                               id="category-filter"
-                               data-category="{{ $cat->content }}">
-                                {{ $cat->content }}
-                            </a>
-                        </li>
-                    @endforeach
-                </ul>
-            </aside>
+                    <li>
+                        <a href="{{url('/category/'.$cat->content)}}"
+                           class="{{ isset($category_slug) && $cat->content == $category_slug ? 'is-active':''}}"
+                           id="category-filter"
+                           data-category="{{ $cat->content }}">
+                            {{ $cat->content }}
+                        </a>
+                    </li>
+                @endforeach
+            </ul>
+        </aside>
 
-        </div>
-    @endif
+    </div>
 
 
 </section>
