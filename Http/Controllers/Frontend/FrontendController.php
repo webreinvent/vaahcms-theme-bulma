@@ -40,7 +40,8 @@ class FrontendController extends Controller
             ->distinct()->simplePaginate(6);
 
 
-        return view('bulmablogtheme::frontend.pages.search-result')->with(['data'=> $data->appends(request()->query())]);
+        return view('bulmablogtheme::frontend.pages.search-result')
+            ->with(['data'=> $data->appends(request()->query())]);
     }
 
     public function searchCategory(Request $request,$slug)
