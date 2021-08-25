@@ -30,7 +30,7 @@
 
 	?>
 
-    @include("vaahcms::frontend.partials.alerts")
+    @include("vaahcms::frontend.partials.errors")
     @include("vaahcms::frontend.partials.flash")
 
     @include('bulmablogtheme::frontend.partials.top-menu')

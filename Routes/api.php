@@ -12,3 +12,18 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+
+Route::group(
+    [
+        'middleware' => ['web', 'has.backend.access'],
+        'namespace' => 'Api',
+    ],
+    function () {
+        //------------------------------------------------
+        Route::any( '/', 'ContentController@index' )
+            ->name( 'vh.backend.bulmablogtheme' );
+        //------------------------------------------------
+        //------------------------------------------------
+        //------------------------------------------------
+    });

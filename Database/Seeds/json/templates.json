@@ -105,6 +105,33 @@
             "file_path": "frontend.pages.single-blog"
         },
         "groups": [
+            {
+                "name": "Header",
+                "slug": "header",
+                "is_repeatable": true,
+                "fields": [
+                    {
+                        "name": "Headline",
+                        "slug": "headline",
+                        "meta": {
+                            "default": "Dummy Headline"
+                        },
+                        "type": {
+                            "slug": "text"
+                        }
+                    },
+                    {
+                        "name": "Description",
+                        "slug": "description",
+                        "meta": {
+                            "default": "This is a Dummy Content."
+                        },
+                        "type": {
+                            "slug": "editor"
+                        }
+                    }
+                ]
+            }
         ]
 
     }

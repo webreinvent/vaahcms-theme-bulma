@@ -14,6 +14,10 @@
 
 @section('content')
     <div>
+
+{{--        {!! dd(get_the_content($data)) !!}--}}
+{{--        {!! get_content($data) !!}--}}
+
         @include('bulmablogtheme::frontend.partials.header')
         @include('bulmablogtheme::frontend.partials.blog-content')
         @include('bulmablogtheme::frontend.partials.footer')

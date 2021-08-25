@@ -15,7 +15,7 @@
                 ->select('vh_cms_contents.id', 'vh_cms_contents.created_at')
                 ->distinct()->get();
             }else{
-                $blogs = $blogs->orderBy('vh_cms_contents.created_at', 'desc')
+                $blogs = $blogs->orderBy('vh_cms_contents.id', 'desc')
                 ->select('vh_cms_contents.id', 'vh_cms_contents.created_at')
                 ->distinct()->simplePaginate(6);
             }
@@ -31,7 +31,7 @@
             <div class="column is-three-quarters mt-6">
                     <div class="columns is-multiline">
                         @if(isset($blogs) && (is_array($blogs) || is_object($blogs)) && count($blogs) > 0)
-                            @foreach($blogs as $blog)
+                            @foreach($blogs as $key => $blog)
 
                                 @php
 
@@ -98,21 +98,40 @@
                                                     </div>
                                                 @endif
                                             </div>
-
                                         </a>
 
+{{--                                        {!! get_group($blog_data ,'default' ) !!}--}}
+
+{{--                                        {!! dd(get_field($blog_data, 'testing', 'default')) !!}--}}
+
+
+{{--                                       {!! get_group($blog_data ,'default','content' ) !!}--}}
+
+{{--                                        {!! get_group($blog_data ,'testing' ,'content' ,0 ) !!}--}}
+
+                                        @if($key == 3)
+{{--                                            {!! dd(get_the_field($blog_data, 'headline', 'header', 'template')) !!}--}}
+{{--                                            {!! dd(get_the_group($blog_data ,'default' )) !!}--}}
+
+{{--                                            {!! dd(get_the_group($blog_data ,'header' ,'template')) !!}--}}
+                                        @endif
+
+{{--                                        {!! get_group($blog_data ,'header' ,'template') !!}--}}
+
+
+{{--                                        {!! dd(get_the_group($blog_data ,'header' ,'template')) !!}--}}
 
                                         <div class="content">
                                             <a href="{{url('/blog/'.$blog_data->permalink)}}">
-                                                <h4>{!! get_field($blog_data, 'title') !!}</h4>
+                                                <h4>{!! get_field($blog_data, 'title', 'default','content' , 0, 0) !!}</h4>
                                                 <p class="has-text-black">{!! substr(strip_tags(get_field($blog_data, 'content')), 0, 250); !!}....</p>
                                             </a>
                                             <br/>
                                             <div class="level">
 
                                                     <span class="level-left has-text-weight-bold">
-                                                            <a href="{{url('/category/'.get_field($blog_data, 'category'))}}">
-                                                                {!! get_field($blog_data, 'category') !!}
+                                                            <a href="{{url('/category/'.get_the_field($blog_data, 'category'))}}">
+                                                                {!! get_the_field($blog_data, 'category') !!}
                                                             </a>
                                                     </span>
                                                 <br/>

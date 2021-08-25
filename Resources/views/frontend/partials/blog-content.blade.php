@@ -2,49 +2,71 @@
     <div class="section">
         <div class="columns">
             <div class="column is-three-quarters">
-                <div class="section">
-                    <p class="is-size-2 has-text-weight-bold">{!! get_field($data, 'title') !!}</p>
-                    @if($data->authorUser)
-                        <div class="media">
-                            <div class="media-left">
-                                <figure class="image is-48x48">
-                                    @if($data->authorUser->avatar)
-                                        <img src='{{$data->authorUser->avatar}}' alt="author_image"/>
-                                    @else
-                                        <img src="http://bulma.io/images/placeholders/96x96.png" alt="Image">
-                                    @endif
+{{--                <div class="section">--}}
+{{--                    <p class="is-size-2 has-text-weight-bold">{!! get_field($data, 'title') !!}</p>--}}
+{{--                    @if($data->authorUser)--}}
+{{--                        <div class="media">--}}
+{{--                            <div class="media-left">--}}
+{{--                                <figure class="image is-48x48">--}}
+{{--                                    @if($data->authorUser->avatar)--}}
+{{--                                        <img src='{{$data->authorUser->avatar}}' alt="author_image"/>--}}
+{{--                                    @else--}}
+{{--                                        <img src="http://bulma.io/images/placeholders/96x96.png" alt="Image">--}}
+{{--                                    @endif--}}
 
-                                </figure>
-                            </div>
-                            <div class="media-content">
-                                <p>
-                                    <strong>{{$data->authorUser->name ? $data->authorUser->name : '' }}</strong>
-                                    <br>
-                                    <small>{{ $data->authorUser->title ? $data->authorUser->title : '' }}</small>
-                                </p>
-                            </div>
-                        </div>
-                    @endif
-                    <br/>
-                    @if(get_field($data, 'thumbnail-image'))
-                        <img src='{{get_field($data, 'thumbnail-image')}}'/>
-                        <br/>
-                    @endif
-                    {!! get_field($data, 'content') !!}
-                    <br/>
-                    <br/>
-                    <div class="level">
-                        <span class="level-left"><span style="font-weight: bold">Category:&nbsp;</span>
-                            <a href="{{url('/category/'.get_field($data, 'category'))}}">
-                                {!! get_field($data, 'category') !!}
-                            </a>
-                        </span>
-                        <br/>
-                        <p class="level-right">{{date('d M Y - h:i A', strtotime($data->created_at))}}</p>
-                    </div>
+{{--                                </figure>--}}
+{{--                            </div>--}}
+{{--                            <div class="media-content">--}}
+{{--                                <p>--}}
+{{--                                    <strong>{{$data->authorUser->name ? $data->authorUser->name : '' }}</strong>--}}
+{{--                                    <br>--}}
+{{--                                    <small>{{ $data->authorUser->title ? $data->authorUser->title : '' }}</small>--}}
+{{--                                </p>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    @endif--}}
+{{--                    <br/>--}}
+{{--                    @if(get_field($data, 'thumbnail-image'))--}}
+{{--                        <img src='{{get_field($data, 'thumbnail-image')}}'/>--}}
+{{--                        <br/>--}}
+{{--                    @endif--}}
+{{--                    {!! get_field($data, 'content') !!}--}}
+{{--                    <br/>--}}
+{{--                    <br/>--}}
+{{--                    <div class="level">--}}
+{{--                        <span class="level-left"><span style="font-weight: bold">Category:&nbsp;</span>--}}
+{{--                            <a href="{{url('/category/'.get_the_field($data, 'category'))}}">--}}
+{{--                                {!! get_the_field($data, 'category') !!}--}}
+{{--                            </a>--}}
+{{--                        </span>--}}
+{{--                        <br/>--}}
+{{--                        <p class="level-right">{{date('d M Y - h:i A', strtotime($data->created_at))}}</p>--}}
+{{--                    </div>--}}
 
-                </div>
+{{--                </div>--}}
+
+                {{--        {!! dd(get_the_content($data)) !!}--}}
+                        {!! get_contents('blog',[
+                        'q' => '',
+                        'per_page' => '5',
+                        'container_opening_tag' => '<div class="columns is-multiline">',
+                        'container_closing_tag' => '</div>',
+                        'content_opening_tag' => '<div class="column is-4">',
+                        'content_closing_tag' => '</div>']) !!}
+
+                        {{--{!! get_pagination('blog',[
+                        'q' => '',
+                        'per_page' => '5',
+                        'container_opening_tag' => '<div class="columns is-multiline">',
+                        'container_closing_tag' => '</div>',
+                        'content_opening_tag' => '<div class="column is-4">',
+                        'content_closing_tag' => '</div>']) !!}--}}
+
             </div>
+
+
+
+
             <div class="column">
                 @include('bulmablogtheme::frontend.partials.side-bar-filter')
             </div>
