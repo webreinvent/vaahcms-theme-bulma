@@ -59,9 +59,8 @@
                     {
                         "name": "Category",
                         "meta": {
-                            "default": "Default",
+                            "default": "Uncategorized",
                             "is_multiple": true,
-                            "model_namespace": true,
                             "type": "Taxonomy"
                         },
                         "type": {

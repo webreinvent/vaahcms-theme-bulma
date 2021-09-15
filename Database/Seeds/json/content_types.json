@@ -59,8 +59,7 @@
                     {
                         "name": "Category",
                         "meta": {
-                            "default": "Uncategoried",
-                            "column": "slug",
+                            "default": "Uncategorized",
                             "is_multiple": true,
                             "type": "Taxonomy"
                         },

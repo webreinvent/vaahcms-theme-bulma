@@ -96,16 +96,18 @@
 
                                                             $taxonomy_type = array();
 
-                                                            foreach ($taxonomy_cats as $taxonomy_cat){
+                                                            if(is_array($taxonomy_cats) && count($taxonomy_cats) > 0){
+                                                                foreach ($taxonomy_cats as $taxonomy_cat){
 
-                                                                $taxonomy_type[] = \WebReinvent\VaahCms\Entities\TaxonomyType::where(
-                                                                                'id',$taxonomy_cat->vh_taxonomy_type_id
-                                                                            )->first();
+                                                                    $taxonomy_type[] = \WebReinvent\VaahCms\Entities\TaxonomyType::where(
+                                                                                    'id',$taxonomy_cat->vh_taxonomy_type_id
+                                                                                )->first();
 
+                                                                }
                                                             }
 
                                                         @endphp
-                                                        @if(count($taxonomy_cats) > 0 )
+                                                        @if( is_array($taxonomy_cats) && count($taxonomy_cats) > 0 )
 
                                                             @foreach($taxonomy_cats as $key => $taxonomy_cat)
 

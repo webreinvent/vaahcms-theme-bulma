@@ -15,7 +15,7 @@
     @endif
 
 
-    {!! vh_search_engine_visibility() !!}
+{{--    {!! vh_search_engine_visibility() !!}--}}
 
     <meta name="csrf-token" id="_token" content="{{ csrf_token() }}">
 
