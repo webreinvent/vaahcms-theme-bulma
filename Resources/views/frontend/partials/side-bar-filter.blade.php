@@ -18,17 +18,16 @@
 
     @php
 
-        $category = \VaahCms\Modules\Cms\Entities\Content::leftJoin('vh_cms_content_types',function ($join){
-            $join->on('vh_cms_content_types.id', 'vh_cms_contents.vh_cms_content_type_id');
-        })->join('vh_cms_content_form_fields', function ($join) {
-            $join->on('vh_cms_content_form_fields.vh_cms_content_id', '=', 'vh_cms_contents.id');
-        })->join('vh_cms_form_fields', function ($join) {
-            $join->on('vh_cms_form_fields.id', '=', 'vh_cms_content_form_fields.vh_cms_form_field_id');
-        })->where('vh_cms_content_types.slug','blog')
-            ->where('vh_cms_form_fields.slug','category')
-            ->select('vh_cms_content_form_fields.content')
-            ->distinct()
-            ->get();
+        $category = \WebReinvent\VaahCms\Entities\Taxonomy::whereHas('contentFormRelations' , function($c){
+            $c->whereHas('field',function ($f){
+                $f->where('slug', 'category');
+            });
+            $c->whereHas('content',function ($f){
+                $f->whereHas('contentType',function ($ct){
+                    $ct->where('slug', 'blog');
+                });
+            });
+        })->with(['type'])->has('type')->get();
 
     @endphp
 
@@ -42,11 +41,11 @@
                     @foreach($category as $cat)
 
                         <li>
-                            <a href="{{url('/category/'.$cat->content)}}"
-                               class="{{ isset($category_slug) && $cat->content == $category_slug ? 'is-active':''}}"
+                            <a href="{{url('/taxonomies/'.$cat->type->slug.'/'.$cat->slug)}}"
+                               class="{{ isset($taxonomy) && $cat->slug == $taxonomy->slug ? 'is-active':''}}"
                                id="category-filter"
-                               data-category="{{ $cat->content }}">
-                                {{ $cat->content }}
+                               data-category="{{ $cat->name }}">
+                                {{ $cat->name }}
                             </a>
                         </li>
                     @endforeach

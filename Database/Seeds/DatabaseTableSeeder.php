@@ -4,6 +4,7 @@ namespace VaahCms\Themes\BulmaBlogTheme\Database\Seeds;
 
 use Illuminate\Database\Seeder;
 use VaahCms\Modules\Cms\Libraries\CmsSeeder;
+use WebReinvent\VaahCms\Libraries\VaahSeeder;
 
 class DatabaseTableSeeder extends Seeder
 {
@@ -16,6 +17,8 @@ class DatabaseTableSeeder extends Seeder
     {
         $theme_slug = 'bulmablogtheme';
 
+        $this->seedTaxonomyTypes();
+        $this->seedTaxonomies();
 
         $file = __DIR__.'/json/theme_locations.json';
         CmsSeeder::themeLocations($theme_slug, $file);
@@ -35,6 +38,20 @@ class DatabaseTableSeeder extends Seeder
      *
      * @return void
      */
+
+
+    //---------------------------------------------------------------
+    public function seedTaxonomyTypes()
+    {
+        $json_file_path = __DIR__."/json/taxonomy_types.json";
+        VaahSeeder::taxonomyTypes($json_file_path);
+    }
+    //---------------------------------------------------------------
+    public function seedTaxonomies()
+    {
+        $json_file_path = __DIR__."/json/taxonomies.json";
+        VaahSeeder::taxonomies($json_file_path);
+    }
 
 
 }

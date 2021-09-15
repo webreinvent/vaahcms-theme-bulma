@@ -26,8 +26,8 @@
                         </div>
                     @endif
                     <br/>
-                    @if(get_field($data, 'thumbnail-image'))
-                        <img src='{{get_field($data, 'thumbnail-image')}}'/>
+                    @if(get_the_field($data, 'thumbnail-image'))
+                        <img src='{{get_the_field($data, 'thumbnail-image')}}'/>
                         <br/>
                     @endif
                     {!! get_field($data, 'content') !!}
@@ -35,8 +35,8 @@
                     <br/>
                     <div class="level">
                         <span class="level-left"><span style="font-weight: bold">Category:&nbsp;</span>
-                            <a href="{{url('/category/'.get_field($data, 'category'))}}">
-                                {!! get_field($data, 'category') !!}
+                            <a href="{{url('/category/'.get_the_field($data, 'category'))}}">
+                                {!! get_the_field($data, 'category') !!}
                             </a>
                         </span>
                         <br/>

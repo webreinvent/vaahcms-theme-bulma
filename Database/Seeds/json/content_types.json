@@ -59,16 +59,13 @@
                     {
                         "name": "Category",
                         "meta": {
-                            "default": "Default",
-                            "is_multiple": false,
-                            "option": [
-                                "Default",
-                                "Sport",
-                                "Entertainment"
-                            ]
+                            "default": "Uncategoried",
+                            "column": "slug",
+                            "is_multiple": true,
+                            "type": "Taxonomy"
                         },
                         "type": {
-                            "slug": "select"
+                            "slug": "relation"
                         }
                     },
                     {
