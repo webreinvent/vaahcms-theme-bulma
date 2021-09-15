@@ -14,8 +14,7 @@
         <title>BlogTheme</title>
     @endif
 
-
-{{--    {!! vh_search_engine_visibility() !!}--}}
+    {!! vh_search_engine_visibility() !!}
 
     <meta name="csrf-token" id="_token" content="{{ csrf_token() }}">
 
@@ -34,6 +33,8 @@
 </head>
 	<body>
 
+    {!! config('settings.global.script_after_body_start'); !!}
+
 	<?php
 
 	//vh_get_modules_extended_views('menu');
@@ -50,6 +51,8 @@
 
 
     @yield('vaahcms_extend_frontend_scripts')
+
+    {!! config('settings.global.script_before_body_close'); !!}
 
 	</body>
 </html>
