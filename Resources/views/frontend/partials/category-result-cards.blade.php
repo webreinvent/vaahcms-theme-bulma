@@ -7,32 +7,18 @@
             <div class="column is-three-quarters mt-6">
 
                 <div class="mb-5">
-                    @if(isset($category_slug) && $category_slug)
-                        <p class="is-size-4 has-text-weight-bold">Category: "{{$category_slug}}"</p>
+                    @if(isset($taxonomy) && $taxonomy)
+                        <p class="is-size-4 has-text-weight-bold">Category: "{{$taxonomy->name}}"</p>
                     @endif
                 </div>
 
                     <div class="columns is-multiline">
 
                         @if(isset($data) && (is_array($data) || is_object($data)) && count($data) > 0)
-                            @foreach($data as $blog)
+                            @foreach($data as $blog_data)
 
                                 @php
 
-                                    $response = \VaahCms\Modules\Cms\Entities\Content::getItem($blog->id);
-
-                                     if($response['status'] != 'success')
-                                     {
-                                         $blog_data = $blog;
-                                     }
-
-                                     //for controller
-                                     $blog_data = $response['data'];
-
-
-                                    $image = '';
-                                    $name = '';
-                                    $title = '';
 
                                     if($blog_data->authorUser){
                                         $image = $blog_data->authorUser->avatar;
@@ -50,8 +36,8 @@
                                         <a href="{{url('/blog/'.$blog_data->permalink)}}">
                                             <div class="card-image">
                                                 <figure class="image is-4by3">
-                                                    @if(get_field($blog_data, 'thumbnail-image'))
-                                                        <img src='{{get_field($blog_data, 'thumbnail-image')}}'/>
+                                                    @if(get_the_field($blog_data, 'thumbnail-image'))
+                                                        <img src='{{get_the_field($blog_data, 'thumbnail-image')}}'/>
                                                     @else
                                                         <img src="http://bulma.io/images/placeholders/1280x960.png" alt="Image">
                                                     @endif
@@ -90,10 +76,46 @@
                                                     <br/>
                                                     <br/>
                                                     <div class="level">
-                                                        <span class="level-left has-text-weight-bold">
-                                                            <a href="{{url('/category/'.get_field($blog_data, 'category'))}}">
-                                                                {!! get_field($blog_data, 'category') !!}
-                                                            </a>
+                                                        <span class="level-left has-text-weight-bold" style="display: grid">
+                                                            @php
+
+                                                                if(isset($blog_data)
+                                                                && get_the_field($blog_data, 'category')){
+
+                                                                 $taxonomy_cats = get_the_field($blog_data, 'category');
+
+                                                                    if(isset($taxonomy_cats->id)){
+                                                                        $taxonomy_cats = [$taxonomy_cats];
+                                                                    }
+
+                                                                }
+
+                                                                $taxonomy_type = array();
+
+                                                                foreach ($taxonomy_cats as $taxonomy_cat){
+
+                                                                    $taxonomy_type[] = \WebReinvent\VaahCms\Entities\TaxonomyType::where(
+                                                                                    'id',$taxonomy_cat->vh_taxonomy_type_id
+                                                                                )->first();
+
+                                                                }
+
+                                                            @endphp
+                                                            @if(count($taxonomy_cats) > 0 )
+
+                                                                @foreach($taxonomy_cats as $key => $taxonomy_cat)
+
+                                                                    @if($taxonomy_type[$key])
+                                                                        <a href="{{url('/taxonomies/'.$taxonomy_type[$key]->slug.'/'.$taxonomy_cat->slug)}}">
+                                                                        {!! $taxonomy_cat->name !!}
+                                                                    </a>
+                                                                    @endif
+
+
+
+                                                                @endforeach
+
+                                                            @endif
                                                         </span>
                                                         <br/>
                                                         <small class="level-right">{{date('d M Y - h:i A', strtotime($blog_data->created_at))}}</small>
