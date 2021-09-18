@@ -96,7 +96,7 @@
 
                                                             $taxonomy_type = array();
 
-                                                            if(is_array($taxonomy_cats) && count($taxonomy_cats) > 0){
+                                                            if(isset($taxonomy_cats) && is_array($taxonomy_cats) && count($taxonomy_cats) > 0){
                                                                 foreach ($taxonomy_cats as $taxonomy_cat){
 
                                                                     $taxonomy_type[] = \WebReinvent\VaahCms\Entities\TaxonomyType::where(
@@ -107,7 +107,7 @@
                                                             }
 
                                                         @endphp
-                                                        @if( is_array($taxonomy_cats) && count($taxonomy_cats) > 0 )
+                                                        @if( isset($taxonomy_cats) && is_array($taxonomy_cats) && count($taxonomy_cats) > 0 )
 
                                                             @foreach($taxonomy_cats as $key => $taxonomy_cat)
 
@@ -141,7 +141,8 @@
                         @endif
                     </div>
                 <div class="has-text-centered">
-                    {!! returnPaginationHtml($blogs['list']) !!}
+
+                    {{$blogs['list']}}
 
                 </div>
 

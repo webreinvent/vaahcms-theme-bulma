@@ -1,4 +1,4 @@
-@extends("bulmablogtheme::frontend.layouts.default",["title" => "Category: ".isset($taxonomy)?$taxonomy->name:null])
+@extends("bulmablogtheme::frontend.layouts.default",["title" => "Category: ".$taxonomy->name])
 
 @section('vaahcms_extend_frontend_head')
 
