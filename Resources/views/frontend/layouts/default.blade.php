@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<head>
+    {!! config('settings.global.script_after_head_start'); !!}
+
+
+
     @if(isset($title) && $title)
         <title>{{$title}}</title>
     @elseif(isset($data) && (is_array($data) || is_object($data)) && is_subclass_of($data, 'Illuminate\Database\Eloquent\Model'))
@@ -8,6 +13,9 @@
     @else
         <title>BlogTheme</title>
     @endif
+
+    {!! vh_search_engine_visibility() !!}
+
     <meta name="csrf-token" id="_token" content="{{ csrf_token() }}">
 
     <base href="{{\URL::to('/')}}">
@@ -21,8 +29,11 @@
     @yield('vaahcms_extend_frontend_head')
 
     @yield('vaahcms_extend_frontend_css')
-
+    {!! config('settings.global.script_before_head_close'); !!}
+</head>
 	<body>
+
+    {!! config('settings.global.script_after_body_start'); !!}
 
 	<?php
 
@@ -30,7 +41,7 @@
 
 	?>
 
-    @include("vaahcms::frontend.partials.alerts")
+    @include("vaahcms::frontend.partials.errors")
     @include("vaahcms::frontend.partials.flash")
 
     @include('bulmablogtheme::frontend.partials.top-menu')
@@ -40,6 +51,8 @@
 
 
     @yield('vaahcms_extend_frontend_scripts')
+
+    {!! config('settings.global.script_before_body_close'); !!}
 
 	</body>
 </html>

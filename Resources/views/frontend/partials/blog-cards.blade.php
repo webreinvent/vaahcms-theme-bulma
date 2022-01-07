@@ -1,24 +1,6 @@
 @php
 
-    $blogs = \VaahCms\Modules\Cms\Entities\Content::leftJoin('vh_cms_content_types', function ($join) {
-                $join->on('vh_cms_content_types.id', 'vh_cms_contents.vh_cms_content_type_id');
-            })->join('vh_cms_content_form_fields', function ($join) {
-                $join->on('vh_cms_content_form_fields.vh_cms_content_id', '=', 'vh_cms_contents.id');
-            })->join('vh_cms_form_fields', function ($join) {
-                $join->on('vh_cms_form_fields.id', '=', 'vh_cms_content_form_fields.vh_cms_form_field_id');
-            })->where('vh_cms_content_types.slug', 'blog')->where('vh_cms_contents.status', 'published');
-
-            if (app('request')->input('category')) {
-                $blogs = $blogs->where('vh_cms_form_fields.slug', 'category')
-                    ->where('vh_cms_content_form_fields.content', app('request')->input('category'))
-                    ->orderBy('vh_cms_contents.created_at', 'desc')
-                ->select('vh_cms_contents.id', 'vh_cms_contents.created_at')
-                ->distinct()->get();
-            }else{
-                $blogs = $blogs->orderBy('vh_cms_contents.created_at', 'desc')
-                ->select('vh_cms_contents.id', 'vh_cms_contents.created_at')
-                ->distinct()->simplePaginate(6);
-            }
+    $blogs = get_the_contents('blog');
 
 @endphp
 
@@ -30,25 +12,11 @@
         <div class="columns">
             <div class="column is-three-quarters mt-6">
                     <div class="columns is-multiline">
-                        @if(isset($blogs) && (is_array($blogs) || is_object($blogs)) && count($blogs) > 0)
-                            @foreach($blogs as $blog)
+                        @if(isset($blogs['list']) && (is_array($blogs['list']) || is_object($blogs['list'])) && count($blogs['list']) > 0)
+                            @foreach($blogs['list'] as $blog_data)
 
                                 @php
 
-                                    $response = \VaahCms\Modules\Cms\Entities\Content::getItem($blog->id);
-
-                                     if($response['status'] != 'success')
-                                     {
-                                         $blog_data = $blog;
-                                     }
-
-                                     //for controller
-                                     $blog_data = $response['data'];
-
-
-                                    $image = '';
-                                    $name = '';
-                                    $title = '';
 
                                     if($blog_data->authorUser){
                                         $image = $blog_data->authorUser->avatar;
@@ -66,8 +34,8 @@
                                         <a href="{{url('/blog/'.$blog_data->permalink)}}">
                                             <div class="card-image">
                                                 <figure class="image is-4by3">
-                                                    @if(get_field($blog_data, 'thumbnail-image'))
-                                                        <img src='{{get_field($blog_data, 'thumbnail-image')}}'/>
+                                                    @if(get_the_field($blog_data, 'thumbnail-image'))
+                                                        <img src='{{get_the_field($blog_data, 'thumbnail-image')}}'/>
                                                     @else
                                                         <img src="http://bulma.io/images/placeholders/1280x960.png" alt="Image">
                                                     @endif
@@ -110,10 +78,51 @@
                                             <br/>
                                             <div class="level">
 
-                                                    <span class="level-left has-text-weight-bold">
-                                                            <a href="{{url('/category/'.get_field($blog_data, 'category'))}}">
-                                                                {!! get_field($blog_data, 'category') !!}
-                                                            </a>
+                                                    <span class="level-left has-text-weight-bold" style="display: grid">
+
+
+                                                        @php
+
+                                                            if(isset($blog_data)
+                                                            && get_the_field($blog_data, 'category')){
+
+                                                             $taxonomy_cats = get_the_field($blog_data, 'category');
+
+                                                                if(isset($taxonomy_cats->id)){
+                                                                    $taxonomy_cats = [$taxonomy_cats];
+                                                                }
+
+                                                            }
+
+                                                            $taxonomy_type = array();
+
+                                                            if(isset($taxonomy_cats) && is_array($taxonomy_cats) && count($taxonomy_cats) > 0){
+                                                                foreach ($taxonomy_cats as $taxonomy_cat){
+
+                                                                    $taxonomy_type[] = \WebReinvent\VaahCms\Entities\TaxonomyType::where(
+                                                                                    'id',$taxonomy_cat->vh_taxonomy_type_id
+                                                                                )->first();
+
+                                                                }
+                                                            }
+
+                                                        @endphp
+                                                        @if( isset($taxonomy_cats) && is_array($taxonomy_cats) && count($taxonomy_cats) > 0 )
+
+                                                            @foreach($taxonomy_cats as $key => $taxonomy_cat)
+
+                                                                @if($taxonomy_type[$key])
+                                                                    <a href="{{url('/taxonomies/'.$taxonomy_type[$key]->slug.'/'.$taxonomy_cat->slug)}}">
+                                                                        {!! $taxonomy_cat->name !!}
+                                                                    </a>
+                                                                @endif
+
+
+
+                                                            @endforeach
+
+                                                        @endif
+
                                                     </span>
                                                 <br/>
                                                 <small class="level-right">{{date('d M Y - h:i A', strtotime($blog_data->created_at))}}</small>
@@ -132,9 +141,8 @@
                         @endif
                     </div>
                 <div class="has-text-centered">
-                    @if(!app('request')->input('category'))
-                        {{$blogs}}
-                    @endif
+
+                    {{$blogs['list']}}
 
                 </div>
 
