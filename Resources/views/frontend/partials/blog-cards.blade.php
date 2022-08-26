@@ -142,7 +142,9 @@
                     </div>
                 <div class="has-text-centered">
 
-                    {{$blogs['list']}}
+                    @if($blogs && isset($blogs['list']))
+                        {{$blogs['list']}}
+                    @endif
 
                 </div>
 
