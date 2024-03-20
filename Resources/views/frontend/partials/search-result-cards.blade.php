@@ -76,27 +76,28 @@
                                                     <div class="level">
                                                         <span class="level-left has-text-weight-bold" style="display: grid">
                                                             @php
-
+                                                                $taxonomy_type = array();
+                                                                $taxonomy_cats = array();
                                                                 if(isset($blog_data)
-                                                                && get_the_field($blog_data, 'category')){
+                                                                    && get_the_field($blog_data, 'category')){
 
-                                                                 $taxonomy_cats = get_the_field($blog_data, 'category');
+                                                                    $taxonomy_cats = get_the_field($blog_data, 'category');
 
                                                                     if(isset($taxonomy_cats->id)){
                                                                         $taxonomy_cats = [$taxonomy_cats];
                                                                     }
 
-                                                                }
-
-                                                                $taxonomy_type = array();
-
-                                                                foreach ($taxonomy_cats as $taxonomy_cat){
+                                                                    foreach ($taxonomy_cats as $taxonomy_cat){
 
                                                                     $taxonomy_type[] = \WebReinvent\VaahCms\Entities\TaxonomyType::where(
                                                                                     'id',$taxonomy_cat->vh_taxonomy_type_id
                                                                                 )->first();
 
+                                                                    }
+
+
                                                                 }
+
 
                                                             @endphp
                                                             @if(count($taxonomy_cats) > 0 )
